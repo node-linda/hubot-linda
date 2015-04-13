@@ -1,0 +1,6 @@
+*~
+*#*
+.DS_Store
+*.log
+.hubot_history
+node_modules

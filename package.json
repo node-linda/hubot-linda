@@ -1,0 +1,38 @@
+{
+  "name": "hubot-linda",
+  "version": "0.0.1",
+  "description": "Linda connector for Hubot",
+  "main": "scripts/hubot-linda.coffee",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shokai/hubot-linda.git"
+  },
+  "keywords": [
+    "linda",
+    "hubot"
+  ],
+  "author": "Sho Hashimoto <hashimoto@shokai.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shokai/hubot-linda/issues"
+  },
+  "homepage": "https://github.com/shokai/hubot-linda",
+  "dependencies": {
+    "debug": "*",
+    "linda": "^1.2",
+    "socket.io-client": "^1.3"
+  },
+  "devDependencies": {
+    "coffee-errors": "*",
+    "coffee-script": "^1.9.1",
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-coffeelint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-notify": "*",
+    "hubot": "^2.12.0"
+  }
+}
