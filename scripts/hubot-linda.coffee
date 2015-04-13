@@ -4,6 +4,8 @@
 # Author:
 #   @shokai
 
+'use strict'
+
 debug = require('debug')('hubot:linda')
 
 process.env.HUBOT_LINDA_ROOM ||= '#general'
@@ -29,8 +31,7 @@ module.exports = (robot) ->
     cid = setInterval ->
       return if typeof robot?.send isnt 'function'
       debug "connected #{process.env.HUBOT_LINDA_SERVER}"
-      robot.send {room: process.env.HUBOT_LINDA_ROOM},
-        "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda> connected #{process.env.HUBOT_LINDA_SERVER}/#{process.env.HUBOT_LINDA_TUPLESPACE}"
+      robot.send {room: process.env.HUBOT_LINDA_ROOM}, "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda> connected #{process.env.HUBOT_LINDA_SERVER}/#{process.env.HUBOT_LINDA_TUPLESPACE}"
       clearInterval cid
     , 1000
 
@@ -46,8 +47,7 @@ module.exports = (robot) ->
       ts.write tuple.data
       return
 
-    robot.send {room: room},
-      "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda/#{ts.name}> #{tuple.data.value}"
+    robot.send {room: room}, "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda/#{ts.name}> #{tuple.data.value}"
     tuple.data.response = 'success'
     ts.write tuple.data
 
@@ -56,4 +56,4 @@ module.exports = (robot) ->
     for k,v of process.env
       if /^HUBOT_LINDA_.+$/.test k
         conf[k] = v
-    msg.send "#{process.env.HUBOT_LINDA_HEADER} <linda config>\n#{JSON.stringify conf}"
+    msg.send "#{process.env.HUBOT_LINDA_HEADER} <linda config>\n#{JSON.stringify conf, null, 2}"
