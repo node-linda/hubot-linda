@@ -1,6 +1,10 @@
+=== 0.0.4 2015-04-14
+
+* bugfix: tuplespace.watch after io connect
+
 === 0.0.3 2015-04-14
 
-moved shokai/hubot-linda -> node-linda/hubot-linda
+* moved shokai/hubot-linda -> node-linda/hubot-linda
 
 === 0.0.2 2015-04-13
 
