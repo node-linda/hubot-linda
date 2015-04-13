@@ -36,9 +36,9 @@ set ENV Variables
     % export HUBOT_LINDA_HEADER=:feelsgood:  # slack emoticon
 
 
-## How it work?
+System
+------
 
-following URL
 - http://linda-server.herokuapp.com/test?type=hubot&cmd=post&value=hello
 
 1. Write a Tuple into Linda `{type: "hubot", cmd: "post", value: "hello!!"}`
@@ -55,8 +55,8 @@ following URL
 ```
 
 
-## for Hubot Script
-
+for Hubot Script
+----------------
 hubot-linda emits `linda:ready` event when ready.
 
 ```coffee
