@@ -5,6 +5,8 @@ Hubot Linda
 - https://github.com/shokai/hubot-linda
 - https://npmjs.org/package/hubot-linda
 
+[![Build Status](https://travis-ci.org/shokai/hubot-linda.svg)](https://travis-ci.org/shokai/hubot-linda)
+
 
 Install
 -------
