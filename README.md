@@ -2,10 +2,10 @@ Hubot Linda
 ===========
 [Linda](https://www.npmjs.com/package/linda) connector for Hubot
 
-- https://github.com/shokai/hubot-linda
+- https://github.com/node-linda/hubot-linda
 - https://npmjs.org/package/hubot-linda
 
-[![Build Status](https://travis-ci.org/shokai/hubot-linda.svg)](https://travis-ci.org/shokai/hubot-linda)
+[![Build Status](https://travis-ci.org/node-linda/hubot-linda.svg)](https://travis-ci.org/node-linda/hubot-linda)
 
 
 Install

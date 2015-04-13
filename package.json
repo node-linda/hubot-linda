@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shokai/hubot-linda.git"
+    "url": "https://github.com/node-linda/hubot-linda.git"
   },
   "keywords": [
     "linda",
@@ -17,9 +17,9 @@
   "author": "Sho Hashimoto <hashimoto@shokai.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shokai/hubot-linda/issues"
+    "url": "https://github.com/node-linda/hubot-linda/issues"
   },
-  "homepage": "https://github.com/shokai/hubot-linda",
+  "homepage": "https://github.com/node-linda/hubot-linda",
   "dependencies": {
     "debug": "*",
     "linda": "^1.2",
