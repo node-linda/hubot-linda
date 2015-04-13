@@ -1,6 +1,6 @@
 {
   "name": "hubot-linda",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Linda connector for Hubot",
   "main": "scripts/hubot-linda.coffee",
   "scripts": {
