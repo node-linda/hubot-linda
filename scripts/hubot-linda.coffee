@@ -28,7 +28,6 @@ module.exports = (robot) ->
   robot.linda = linda = new LindaClient().connect(socket)
 
   linda.io.on 'connect', ->
-    robot.emit 'linda:ready'
     cid = setInterval ->
       return if typeof robot?.send isnt 'function'
       debug "connected #{process.env.HUBOT_LINDA_SERVER}"
@@ -36,21 +35,23 @@ module.exports = (robot) ->
       clearInterval cid
     , 1000
 
-  ts = linda.tuplespace process.env.HUBOT_LINDA_TUPLESPACE
-  ts.watch {type: 'hubot', cmd: 'post'}, (err, tuple) ->
-    return if tuple.data.response?
-    return unless tuple.data.value?
-    debug tuple
-    room = tuple.data.room or process.env.HUBOT_LINDA_ROOM
+    ts = linda.tuplespace process.env.HUBOT_LINDA_TUPLESPACE
+    ts.watch {type: 'hubot', cmd: 'post'}, (err, tuple) ->
+      return if tuple.data.response?
+      return unless tuple.data.value?
+      debug tuple
+      room = tuple.data.room or process.env.HUBOT_LINDA_ROOM
 
-    unless room
-      tuple.data.response = "fail"
+      unless room
+        tuple.data.response = "fail"
+        ts.write tuple.data
+        return
+
+      robot.send {room: room}, "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda/#{ts.name}> #{tuple.data.value}"
+      tuple.data.response = 'success'
       ts.write tuple.data
-      return
 
-    robot.send {room: room}, "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda/#{ts.name}> #{tuple.data.value}"
-    tuple.data.response = 'success'
-    ts.write tuple.data
+    robot.emit 'linda:ready'
 
   robot.respond /linda config$/i, (msg) ->
     conf = {}
