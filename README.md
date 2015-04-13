@@ -51,3 +51,27 @@ following URL
   room: "#general" // optional, you can specify chat room.
 }
 ```
+
+
+## for Hubot Script
+
+hubot-linda emits `linda:ready` event when ready.
+
+```coffee
+# Description:
+#   read light sensor value with Linda
+# Commands:
+#   hubot sensor light
+
+module.exports = (robot) ->
+
+  robot.on 'linda:ready', ->
+
+    robot.respond /sensor light/, (msg) ->
+
+      robot.linda.tuplespace('test').read {type: "sensor", name: "light"}, (err, tuple) ->
+        if err
+          msg.send "linda error"
+          return
+        msg.send "light : #{tuple.data.value}"
+```
