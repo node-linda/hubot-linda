@@ -1,3 +1,7 @@
+=== 0.0.5 2015-04-14
+
+* emit "linda:ready" event once, not every connection
+
 === 0.0.4 2015-04-14
 
 * bugfix: tuplespace.watch after io connect
