@@ -27,7 +27,7 @@ module.exports = (robot) ->
   socket = require('socket.io-client').connect(process.env.HUBOT_LINDA_SERVER)
   robot.linda = linda = new LindaClient().connect(socket)
 
-  linda.io.on 'connect', ->
+  linda.io.once 'connect', ->
     cid = setInterval ->
       return if typeof robot?.send isnt 'function'
       debug "connected #{process.env.HUBOT_LINDA_SERVER}"
