@@ -1,3 +1,7 @@
+=== 0.0.6 2015-04-14
+
+* bugfix: watch {type:"hubot", cmd:"post"} evenry io.on "connect" event
+
 === 0.0.5 2015-04-14
 
 * emit "linda:ready" event once, not every connection
