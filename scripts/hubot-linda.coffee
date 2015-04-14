@@ -8,7 +8,7 @@
 
 debug = require('debug')('hubot:linda')
 
-process.env.HUBOT_LINDA_ROOM ||= '#general'
+process.env.HUBOT_LINDA_ROOM   ||= '#general'
 process.env.HUBOT_LINDA_HEADER ||= ':feelsgood:'
 
 required_env_vars = [
@@ -27,7 +27,7 @@ module.exports = (robot) ->
   socket = require('socket.io-client').connect(process.env.HUBOT_LINDA_SERVER)
   robot.linda = linda = new LindaClient().connect(socket)
 
-  linda.io.once 'connect', ->
+  linda.io.on 'connect', ->
     cid = setInterval ->
       return if typeof robot?.send isnt 'function'
       debug "connected #{process.env.HUBOT_LINDA_SERVER}"
@@ -51,11 +51,12 @@ module.exports = (robot) ->
       tuple.data.response = 'success'
       ts.write tuple.data
 
-    robot.emit 'linda:ready'
-
   robot.respond /linda config$/i, (msg) ->
     conf = {}
     for k,v of process.env
       if /^HUBOT_LINDA_.+$/.test k
         conf[k] = v
     msg.send "#{process.env.HUBOT_LINDA_HEADER} <linda config>\n#{JSON.stringify conf, null, 2}"
+
+  linda.io.once 'connect', ->
+    robot.emit 'linda:ready'
