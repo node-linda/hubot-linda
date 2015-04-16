@@ -28,12 +28,14 @@ module.exports = (robot) ->
   robot.linda = linda = new LindaClient().connect(socket)
 
   linda.io.on 'connect', ->
-    cid = setInterval ->
-      return if typeof robot?.send isnt 'function'
-      debug "connected #{process.env.HUBOT_LINDA_SERVER}"
-      robot.send {room: process.env.HUBOT_LINDA_ROOM}, "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda> connected #{process.env.HUBOT_LINDA_SERVER}/#{process.env.HUBOT_LINDA_TUPLESPACE}"
-      clearInterval cid
-    , 1000
+
+    if process.env.NODE_ENV isnt 'production'
+      cid = setInterval ->
+        return if typeof robot?.send isnt 'function'
+        debug "connected #{process.env.HUBOT_LINDA_SERVER}"
+        robot.send {room: process.env.HUBOT_LINDA_ROOM}, "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda> connected #{process.env.HUBOT_LINDA_SERVER}/#{process.env.HUBOT_LINDA_TUPLESPACE}"
+        clearInterval cid
+      , 1000
 
     ts = linda.tuplespace process.env.HUBOT_LINDA_TUPLESPACE
     ts.watch {type: 'hubot', cmd: 'post'}, (err, tuple) ->

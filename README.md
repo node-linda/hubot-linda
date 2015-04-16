@@ -34,7 +34,9 @@ set ENV Variables
 
     % export HUBOT_LINDA_ROOM=general
     % export HUBOT_LINDA_HEADER=:feelsgood:  # slack emoticon
+    % export NODE_ENV=production             # mute socket.io status message
 
+on heroku: `heroku config:set HUBOT_LINDA_SERVER=http://linda-server.herokuapp.com`
 
 System
 ------
