@@ -33,7 +33,8 @@ module.exports = (robot) ->
       cid = setInterval ->
         return if typeof robot?.send isnt 'function'
         debug "connected #{process.env.HUBOT_LINDA_SERVER}"
-        robot.send {room: process.env.HUBOT_LINDA_ROOM}, "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda> connected #{process.env.HUBOT_LINDA_SERVER}/#{process.env.HUBOT_LINDA_TUPLESPACE}"
+        robot.send {room: process.env.HUBOT_LINDA_ROOM}
+        , "#{process.env.HUBOT_LINDA_HEADER} <hubot-linda> connected #{process.env.HUBOT_LINDA_SERVER}/#{process.env.HUBOT_LINDA_TUPLESPACE}"
         clearInterval cid
       , 1000
 
@@ -61,4 +62,4 @@ module.exports = (robot) ->
     msg.send "#{process.env.HUBOT_LINDA_HEADER} <linda config>\n#{JSON.stringify conf, null, 2}"
 
   linda.io.once 'connect', ->
-    robot.emit 'linda:ready'
+    robot.emit 'linda:ready', linda
